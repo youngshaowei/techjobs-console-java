@@ -102,7 +102,6 @@ public class JobData {
                 }
             }
         }
-
         return resultJobs;
     }
 
