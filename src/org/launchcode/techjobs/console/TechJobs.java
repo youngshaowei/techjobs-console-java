@@ -2,6 +2,7 @@ package org.launchcode.techjobs.console;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 
 /**
@@ -61,7 +62,8 @@ public class TechJobs {
                 String searchTerm = in.nextLine();
 
                 if (searchField.equals("all")) {
-                    System.out.println("Search all fields not yet implemented.");
+                    printJobs(JobData.findByValue(searchTerm));
+//                    System.out.println("Search all fields not yet implemented.");
                 } else {
                     printJobs(JobData.findByColumnAndValue(searchField, searchTerm));
                 }
@@ -98,7 +100,7 @@ public class TechJobs {
 
             // Validate user's input
             if (choiceIdx < 0 || choiceIdx >= choiceKeys.length) {
-                System.out.println("Invalid choice. Try again.");
+                System.out.println("Invalid Search. Try again.");
             } else {
                 validChoice = true;
             }
@@ -110,7 +112,18 @@ public class TechJobs {
 
     // Print a list of jobs
     private static void printJobs(ArrayList<HashMap<String, String>> someJobs) {
+        //Iterate through array
+        if (!someJobs.isEmpty()) {
+            for (HashMap<String, String> job : someJobs) {
+                System.out.println("********");
+                for (Map.Entry<String, String> aJob : job.entrySet()) {
+                    System.out.println(aJob.getKey() + ": " + aJob.getValue() + "");
+                }
+                System.out.println("********\n");
+            }
 
-        System.out.println("printJobs is not implemented yet");
+        } else{
+            System.out.println("Invalid Choice. Try again.");
+        }
     }
 }
